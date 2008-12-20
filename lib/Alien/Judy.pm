@@ -69,6 +69,9 @@ Copyright 2008 Joshua ben Jore, all rights reserved.
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
+The included library Judy-1.0.4 is not covered by this license. Please
+consult src/Judy-1.0.4/README for notes about its copyright and
+licensing.
 
 =cut
 
