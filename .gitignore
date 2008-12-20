@@ -1,0 +1,32 @@
+Alien-Judy-*
+Judy-*
+
+# WTF, why does CPANTS write this file?
+Debian_CPANTS.txt
+
+# Compilation artifacts
+*.bs
+*.c
+*.o
+
+# EU::MM
+blib
+pm_to_blib
+Makefile
+Makefile.old
+
+# M::B
+_build
+Build
+
+# Emacs
+.#*
+*#
+*~
+
+# Distribution artifacts
+MANIFEST.bak
+META.yml
+
+# bin/release
+Changes.bak
