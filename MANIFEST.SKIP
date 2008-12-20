@@ -6,6 +6,7 @@
 ^Alien-Judy-
 ^\.git/
 ~$
+^Build$
 ^_build
 ^blib
 ^Changes\.bak$
