@@ -43,53 +43,62 @@ sub _run_judy_configure {
 sub ACTION_code {
     my ($self) = @_;
 
-    $self->SUPER::ACTION_code;
-
     if ( $self->notes('build_judy') =~ /^y/i ) {
+	return 0 if ! $self->SUPER::ACTION_code;
+
 	_chdir_to_judy();
 	
 	$self->_run(MAKE())
 	    or do { warn "building Judy failed"; return 0 };
 	
 	_chdir_back();
+
+	return 1;
     }
-    
-    return 1;
+    else {
+	return $self->SUPER::ACTION_code;
+    }
 }
 
 
 sub ACTION_test {
     my ($self) = @_;
     
-    $self->SUPER::ACTION_code;
-
     if ( $self->notes('build_judy') =~ /^y/i ) {
+	return 0 if ! $self->SUPER::ACTION_test;
+    
 	_chdir_to_judy();
 	
 	$self->_run( MAKE(), 'check' )
 	    or do { warn "checking Judy failed "; return 0 };
 	
 	_chdir_back();
-    }
 
-    return 1;
+	return 1;
+    }
+    else {
+	return $self->SUPER::ACTION_test;
+    }
 }
 
 sub ACTION_install {
     my ($self) = @_;
     
-    $self->SUPER::ACTION_code;
-
     if ( $self->notes('build_judy') =~ /^y/i ) {
+	return 0 if ! $self->SUPER::ACTION_install;
+
 	_chdir_to_judy();
 	
 	$self->_run( MAKE(), 'install' )
 	    or do { warn "installing Judy failed "; return 0 };
 	
 	_chdir_back();
-    }
 
-    return 1;
+	return 1;
+    }
+    else {
+	return $self->SUPER::ACTION_install;
+    }
 }
 
 
