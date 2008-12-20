@@ -1,6 +1,6 @@
 package Alien::Judy;
 
-use version; our $VERSION = qv(0.01);
+use version; our $VERSION = '0.01';
 
 1;
 
