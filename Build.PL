@@ -1,8 +1,11 @@
 use strict;
 use warnings;
-use Module::Build;
+use lib 'inc';
 
-my $builder = Module::Build->new(
+use My::Judy::Builder;
+use Config '%Config';
+
+my $builder = My::Judy::Builder->new(
     module_name         => 'Alien::Judy',
     license             => 'perl',
     dist_author         => 'Joshua ben Jore <jjore@cpan.org>',
@@ -11,7 +14,44 @@ my $builder = Module::Build->new(
         'Test::More' => 0,
     },
     add_to_cleanup      => [ 'Alien-Judy-*' ],
-    create_makefile_pl => 'traditional',
+    create_makefile_pl => 'passthrough',
 );
 
 $builder->create_build_script();
+
+print <<'END';
+
+---------------------------------------------------------------------
+This module will build and install libJudy.
+
+It requires a C compiler and make.
+END
+
+my $make = $builder->prompt('Make program: ', $Config{make} );
+$builder->notes('your_make', $make);
+
+
+
+my $run_configure = 'y';
+if ( -e 'src/Judy-1.0.4/Makefile' && -e 'src/Judy-1.0.4/config.h' ) {
+    $run_configure = $builder->prompt("Re-run Judy's configure? ", 'n');
+}
+else {
+    $run_configure = $builder->prompt("Run Judy's configure now? ",'y');
+}
+
+if ( $run_configure =~ /^y/i ) {
+    my $configure_args = $builder->prompt( "Pass any arguments to configure (eg, --prefix=/usr/local): " );
+    $builder->notes("configure_args", $configure_args);
+    
+    if( $builder->_run_judy_configure ) {
+        print "\n\nYou should now run ./Build.\n";
+    }
+    else {
+        print <<'END';
+    Something went wrong with the Judy configuration.
+    You should correct it and re-run Build.PL.
+END
+        exit 1;
+    }
+}

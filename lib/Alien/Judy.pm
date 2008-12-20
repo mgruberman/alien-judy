@@ -1,52 +1,20 @@
 package Alien::Judy;
 
-use warnings;
-use strict;
+use version; our $VERSION = qv(0.01);
+
+1;
+
+__END__
 
 =head1 NAME
 
-Alien::Judy - The great new Alien::Judy!
+Alien::Judy - A wrapper for installing the libJudy C library
 
-=head1 VERSION
+=head1 DESCRIPTION
 
-Version 0.01
-
-=cut
-
-our $VERSION = '0.01';
-
-
-=head1 SYNOPSIS
-
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
-    use Alien::Judy;
-
-    my $foo = Alien::Judy->new();
-    ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 FUNCTIONS
-
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
+Alien::Judy is a wrapper to ease installing the libJudy C library from
+L<http://judy.sourceforge.net>. L<Judy::HS> depends on this to ensure
+that libJudy is available for installation.
 
 =head1 AUTHOR
 
