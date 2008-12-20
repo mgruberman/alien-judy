@@ -97,5 +97,6 @@ src/Judy-1.0.4/tool/Makefile.am
 src/Judy-1.0.4/tool/Makefile.in
 src/Judy-1.0.4/tool/README
 t/00-load.t
-xt/pod-coverage.t
-xt/pod.t
+xt/99_critic.t
+xt/99_pod.t
+xt/99_pod_coverage.t
