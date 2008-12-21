@@ -54,7 +54,7 @@ END
     }
     
     if ( $run_configure =~ /^y/i ) {
-	my $configure_args = $builder->prompt( "Pass any arguments to configure (eg, --prefix=/usr/local): " );
+	my $configure_args = $builder->prompt( "Pass any arguments to configure (eg, --prefix=/usr/local): ", '' );
 	$builder->notes("configure_args", $configure_args);
 	
 	if( $builder->_run_judy_configure ) {
