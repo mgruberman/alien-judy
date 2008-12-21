@@ -1,5 +1,20 @@
 Revision history for Alien-Judy
 
-0.01    Date/time
+0.03    Sun Dec 22 11:30:00 2008
+        Added defaults to Build.PL prompts t unbreak automated installs
+
+0.02    Fri Dec 20 00:00:00 2008
+        Fixed installer to use 'test'/'install' action during
+          'test'/'install' steps. There was a copy/paste error and it
+          always ran the 'build' step.
+        Removed dependence on version.pm
+        Moved pod to separate file, trimmed Alien/Judy.pm
+        Module::Build artifacts to MANIFEST.SKIP
+        Remove two extra copies of the Judy C library
+        Minor pod fixes
+        Clarifid that Judy is licenced separately from Alien::Judy
+        Moved author tests to xt/
+
+0.01    Fri Dec 20 00:00:00 2008
         First version, released on an unsuspecting world.
 
