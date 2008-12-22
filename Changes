@@ -1,5 +1,8 @@
 Revision history for Alien-Judy
 
+0.04    Mon Dec 23 11:38:00 2008
+        Adding misisng files src/Judy-1.0.4/Makefile.{am,in}
+
 0.03    Sun Dec 22 11:30:00 2008
         Added defaults to Build.PL prompts t unbreak automated installs
 
