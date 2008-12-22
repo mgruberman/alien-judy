@@ -5,6 +5,7 @@ Build.PL
 Changes
 inc/My/Judy/Builder.pm
 lib/Alien/Judy.pm
+lib/Alien/Judy.pod
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
@@ -46,6 +47,8 @@ src/Judy-1.0.4/doc/Makefile.in
 src/Judy-1.0.4/INSTALL
 src/Judy-1.0.4/install-sh
 src/Judy-1.0.4/ltmain.sh
+src/Judy-1.0.4/Makefile.am
+src/Judy-1.0.4/Makefile.in
 src/Judy-1.0.4/missing
 src/Judy-1.0.4/README
 src/Judy-1.0.4/src/apps/demo/Makefile_deliver
