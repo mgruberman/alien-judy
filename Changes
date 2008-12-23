@@ -1,5 +1,8 @@
 Revision history for Alien-Judy
 
+0.06    Tue Dec 24 00:27:00 2008
+        Stopped omitting all .c files.
+
 0.05    Mon Dec 23 23:50:00 2008
         Build useful default configure argument
         Remove useless BEGIN from My::Judy::Builder
