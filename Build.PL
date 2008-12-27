@@ -20,9 +20,11 @@ my $builder = My::Judy::Builder->new(
 
 $builder->create_build_script();
 
-my $have_judy =
-    grep { $_ }
+my $have_judy = 1;
+{
+    local $SIG{__WARN__} = sub { $have_judy = 0 if "@_" =~ /No library found for -lJudy/ };
     ExtUtils::Liblist->ext('-lJudy',1);
+}
 $builder->notes('have_judy', $have_judy );
 
 my $build_judy = 'y';
