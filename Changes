@@ -1,5 +1,10 @@
 Revision history for Alien-Judy
 
+0.08    Sun Dec 06 20:08:00 2009
+        Absolutify prefix to ./configure
+        Run configure as `./configure', not `sh configure'. Maybe this helps the person using dmake on Windows
+        Cleaning
+
 0.07    Sat Dec 27 15:02:00 2008
         Find Judy harder
 
