@@ -6,11 +6,11 @@ use warnings;
 use Module::Build;
 our @ISA = 'Module::Build';
 
-use Config '%Config';
+use Config ();
 use File::Spec;
-use Cwd 'cwd';
+use Cwd ();
 
-our $Orig_CWD = cwd();
+our $Orig_CWD = Cwd::cwd();
 
 sub _chdir_to_judy { chdir 'src/Judy-1.0.4' or die "Can't chdir to src/Judy-1.0.4: $!" }
 sub _chdir_back { chdir $Orig_CWD or die "Can't chdir to $Orig_CWD: $!" }

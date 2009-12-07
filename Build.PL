@@ -1,4 +1,6 @@
+#!perl
 use strict;
+use 5.005;
 use warnings;
 use lib 'inc';
 
