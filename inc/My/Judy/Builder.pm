@@ -38,13 +38,21 @@ sub _run_judy_configure {
     }
 }
 
-sub _default_config_args {
+sub _absolute_prefix {
     my ($self) = @_;
 
     my $props = $self->{properties};
     my $prefix = $props->{install_base} ||
 	$props->{prefix} ||
-	$Config{siteprefix};
+	$Config::Config{siteprefix};
+
+    return Cwd::abs_path( $prefix );
+}
+
+sub _default_config_args {
+    my ($self) = @_;
+
+    my $prefix = $self->_absolute_prefix();
 
     my %args = (
         prefix => $prefix,
