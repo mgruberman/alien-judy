@@ -21,6 +21,12 @@ sub _run {
     
     $prog = $self->notes('your_make') if $prog eq MAKE();
     
+    if ( $^O eq 'MSWin32' ) {
+    }
+    else {
+	$prog = "./$prog";
+    }
+
     return system( "$prog @args" ) == 0 ? 1 : 0;
 }
 
@@ -31,7 +37,7 @@ sub _run_judy_configure {
     if ( $self->notes('build_judy') =~ /^y/i ) {
 	_chdir_to_judy();
 	
-	$self->_run( qw( sh configure ), $self->notes('configure_args') )
+	$self->_run( qw( configure ), $self->notes('configure_args') )
 	    or do { warn "configuring Judy failed";      return 0 };
 	
 	_chdir_back();
