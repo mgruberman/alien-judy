@@ -75,10 +75,13 @@ sub _default_config_args {
             'Alien',
             'Judy'
         ),
-	);
+    );
     
-    return join ' ', map { "--$_=$args{$_}" } sort keys %args;
-    
+    return
+        join ' ',
+        map { "--$_=$args{$_}" }
+        sort
+        keys %args;
 }
 
 sub ACTION_code {
