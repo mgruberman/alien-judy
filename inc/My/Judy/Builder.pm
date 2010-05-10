@@ -90,20 +90,21 @@ sub ACTION_code {
     if ( $self->notes('build_judy') =~ /^y/i ) {
         $self->SUPER::ACTION_code();
 
-	_chdir_to_judy();
-	
-	$self->_run(MAKE())
-	    or do {
-		warn "building Judy failed";
-		_chdir_back();
-		return 0 };
-	
-	_chdir_back();
+        _chdir_to_judy();
+        
+        $self->_run(MAKE())
+            or do {
+                warn "building Judy failed";
+                _chdir_back();
+                return 0;
+            };
+        
+        _chdir_back();
 
-	return 1;
+        return 1;
     }
     else {
-    	return $self->SUPER::ACTION_code;
+            return $self->SUPER::ACTION_code();
     }
 }
 
