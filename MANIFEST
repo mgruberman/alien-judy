@@ -6,7 +6,6 @@ Changes
 inc/My/Judy/Builder.pm
 lib/Alien/Judy.pm
 lib/Alien/Judy.pod
-Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 META.yml
