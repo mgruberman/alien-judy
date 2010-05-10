@@ -66,7 +66,10 @@ It requires a C compiler and make.
     }
     
     if ( $run_configure =~ /^y/i ) {
-	my $configure_args = $builder->prompt( 'Pass any arguments to configure: ', $builder->_default_config_args );
+	my $configure_args = $builder->prompt(
+            'Pass any arguments to configure: ',
+            $builder->_default_config_args
+        );
 	$builder->notes("configure_args", $configure_args);
 	
 	if( $builder->_run_judy_configure ) {
