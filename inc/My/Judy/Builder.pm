@@ -48,6 +48,11 @@ sub _run_judy_configure {
             };
         
         _chdir_back();
+	
+	return 1;
+    }
+    else {
+	return 1;
     }
 }
 
