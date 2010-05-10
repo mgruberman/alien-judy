@@ -2,9 +2,10 @@
 use strict;
 use 5.005;
 use warnings;
-use lib 'inc';
+use lib qw( inc lib );
 
 use My::Judy::Builder;
+use Alien::Judy ();
 use ExtUtils::Liblist;
 use Config ();
 
@@ -30,7 +31,16 @@ my $have_judy = 1;
             $have_judy = 0;
         }
     };
-    ExtUtils::Liblist->ext('-lJudy',1);
+
+    my $lib_dirs =
+        join ' ',
+        map { "-L$_" }
+        Alien::Judy::lib_dirs();
+
+    ExtUtils::Liblist->ext(
+        "$lib_dirs -lJudy",
+        1
+    );
 }
 $builder->notes('have_judy', $have_judy );
 
