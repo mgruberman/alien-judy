@@ -14,6 +14,7 @@ my $builder = My::Judy::Builder->new(
     dist_author         => 'Joshua ben Jore <jjore@cpan.org>',
     dist_version_from   => 'lib/Alien/Judy.pm',
     build_requires => {
+        'ExtUtils::CBuilder' => 0,
         'Test::More' => 0,
     },
     add_to_cleanup      => [ 'Alien-Judy-*' ],
