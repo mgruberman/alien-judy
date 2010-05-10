@@ -18,7 +18,6 @@ my $builder = My::Judy::Builder->new(
         'Test::More' => 0,
     },
     add_to_cleanup      => [ 'Alien-Judy-*' ],
-    create_makefile_pl => 'passthrough',
 );
 
 $builder->create_build_script();
