@@ -39,12 +39,15 @@ sub _run_judy_configure {
     my ($self) = @_;
     
     if ( $self->notes('build_judy') =~ /^y/i ) {
-	_chdir_to_judy();
-	
-	$self->_run( './configure', $self->notes('configure_args') )
-	    or do { warn "configuring Judy failed";      return 0 };
-	
-	_chdir_back();
+        _chdir_to_judy();
+        
+        $self->_run( './configure', $self->notes('configure_args') )
+            or do {
+                warn "configuring Judy failed";
+                return 0;
+            };
+        
+        _chdir_back();
     }
 }
 
