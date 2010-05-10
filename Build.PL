@@ -25,7 +25,12 @@ $builder->create_build_script();
 
 my $have_judy = 1;
 {
-    local $SIG{__WARN__} = sub { $have_judy = 0 if "@_" =~ /No library found for -lJudy/ };
+    local $SIG{__WARN__} = sub {
+        my $warning = "@_";
+        if ( $warning =~ /No library found for -lJudy/ ) {
+            $have_judy = 0;
+        }
+    };
     ExtUtils::Liblist->ext('-lJudy',1);
 }
 $builder->notes('have_judy', $have_judy );
