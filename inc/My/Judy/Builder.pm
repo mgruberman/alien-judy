@@ -129,7 +129,7 @@ sub ACTION_test {
         return 1;
     }
     else {
-    	return $self->SUPER::ACTION_test;
+        return $self->SUPER::ACTION_test();
     }
 }
 
