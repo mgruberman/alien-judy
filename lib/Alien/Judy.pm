@@ -1,15 +1,14 @@
 package Alien::Judy;
 
 use strict;
-use warnings;
 
-use vars qw( @EXPORT_OK %EXPORT_TAGS $VERSION );
+use vars qw( @EXPORT_OK %EXPORT_TAGS $VERSION @ISA );
 
 use Config ();
 use File::Spec ();
 
 use Exporter ();
-*import = \&Exporter::import;
+@ISA = 'Exporter';
 
 @EXPORT_OK = qw( inc_dirs lib_dirs );
 %EXPORT_TAGS = (
