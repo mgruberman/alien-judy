@@ -132,24 +132,24 @@ sub ACTION_install {
     my ($self) = @_;
     
     if ( $self->notes('build_judy') =~ /^y/i ) {
-	$self->SUPER::ACTION_install;
+        $self->SUPER::ACTION_install();
 
-	_chdir_to_judy();
-	
-	$self->_run( MAKE(), 'install' )
-	    or do {
-		warn "installing Judy failed ";
-		_chdir_back();
-		return 0 };
-	
-	_chdir_back();
+        _chdir_to_judy();
+        
+        $self->_run( MAKE(), 'install' )
+            or do {
+                warn "installing Judy failed ";
+                _chdir_back();
+                return 0;
+            };
+        
+        _chdir_back();
 
-	return 1;
+        return 1;
     }
     else {
-    	return $self->SUPER::ACTION_install;
+        return $self->SUPER::ACTION_install();
     }
 }
-
 
 1;
