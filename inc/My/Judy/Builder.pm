@@ -12,8 +12,18 @@ use Cwd ();
 
 our $Orig_CWD = Cwd::cwd();
 
-sub _chdir_to_judy { chdir 'src/Judy-1.0.4' or die "Can't chdir to src/Judy-1.0.4: $!" }
-sub _chdir_back { chdir $Orig_CWD or die "Can't chdir to $Orig_CWD: $!" }
+sub _chdir_to_judy {
+    chdir 'src/Judy-1.0.5'
+        or die "Can't chdir to src/Judy-1.0.5: $!";
+    return;
+}
+
+sub _chdir_back {
+    chdir $Orig_CWD
+        or die "Can't chdir to $Orig_CWD: $!";
+    return;
+}
+
 use constant MAKE => [];
 
 sub _run {
