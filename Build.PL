@@ -79,10 +79,10 @@ You should now run ./Build.
 };
 	}
 	else {
-	    print <<'END';
+	    print q{
     Something went wrong with the Judy configuration.
     You should correct it and re-run Build.PL.
-END
+};
             exit 1;
 	}
     }
