@@ -26,7 +26,7 @@ platform) if Alien::Judy was made responsible for installing libJudy.
 
 =head1 AUTHOR
 
-Joshua ben Jore, C<< <jjore at cpan.org> >>
+Josh ben Jore, C<< <jjore at cpan.org> >>
 
 =head1 BUGS
 
@@ -76,7 +76,7 @@ I stole the packaging style from Michael Schwern's L<Alien::SVN>.
 
 =head1 Alien::Judy COPYRIGHT & LICENSE
 
-Copyright 2008 Joshua ben Jore, all rights reserved.
+Copyright 2008-2010 Josh ben Jore, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
