@@ -5,6 +5,7 @@ use strict;
 use vars qw( @EXPORT_OK %EXPORT_TAGS $VERSION @ISA );
 
 use Config ();
+use Cwd ();
 use File::Spec ();
 
 use Exporter ();
