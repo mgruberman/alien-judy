@@ -22,7 +22,7 @@ Returns a list of directories perhaps likely to contain a
 F<libJudy.so> (or F<Judy.dll> or whatever is appropriate for your
 platform) if Alien::Judy was made responsible for installing libJudy.
 
-=cut
+=back
 
 =head1 AUTHOR
 
@@ -86,5 +86,5 @@ under the same terms as Perl itself.
 =head1 Judy COPYRIGHT & LICENSE
 
 The included library Judy-1.0.4 is covered by separate copyright and
-license. Please consult the library's source code (L<src/Judy-1.0.4/README>)for notes about its
+license. Please consult the library's source code (L<srcE<sol>Judy-1.0.5E<sol>README>)for notes about its
 copyright and licensing.
