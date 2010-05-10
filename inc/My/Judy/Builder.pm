@@ -87,8 +87,8 @@ sub _default_config_args {
 sub ACTION_code {
     my ($self) = @_;
 
-   if ( $self->notes('build_judy') =~ /^y/i ) {
-	$self->SUPER::ACTION_code;
+    if ( $self->notes('build_judy') =~ /^y/i ) {
+        $self->SUPER::ACTION_code();
 
 	_chdir_to_judy();
 	
