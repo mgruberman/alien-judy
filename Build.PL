@@ -73,7 +73,10 @@ It requires a C compiler and make.
 	$builder->notes("configure_args", $configure_args);
 	
 	if( $builder->_run_judy_configure ) {
-	    print "\n\nYou should now run ./Build.\n";
+	    print q{
+
+You should now run ./Build.
+};
 	}
 	else {
 	    print <<'END';
