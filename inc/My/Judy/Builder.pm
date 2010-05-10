@@ -55,9 +55,10 @@ sub _absolute_prefix {
     my ($self) = @_;
 
     my $props = $self->{properties};
-    my $prefix = $props->{install_base} ||
-	$props->{prefix} ||
-	$Config::Config{siteprefix};
+    my $prefix
+        =  $props->{install_base}
+        || $props->{prefix}
+        || $Config::Config{siteprefix};
 
     return Cwd::abs_path( $prefix );
 }
