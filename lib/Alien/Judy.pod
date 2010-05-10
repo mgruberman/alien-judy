@@ -7,6 +7,23 @@ Alien::Judy - A wrapper for installing the Judy library
 Alien::Judy is a wrapper to ease installing the Judy library from
 L<http://judy.sourceforge.net>.
 
+=head1 EXPORTABLE FUNCTIONS
+
+=over
+
+=item inc_dir
+
+Returns a list of directories perhaps likely to contain a F<Judy.h> if
+Alien::Judy was made responsible for installing libJudy.
+
+=item lib_dir
+
+Returns a list of directories perhaps likely to contain a
+F<libJudy.so> (or F<Judy.dll> or whatever is appropriate for your
+platform) if Alien::Judy was made responsible for installing libJudy.
+
+=cut
+
 =head1 AUTHOR
 
 Joshua ben Jore, C<< <jjore at cpan.org> >>
