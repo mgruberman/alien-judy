@@ -115,17 +115,18 @@ sub ACTION_test {
     if ( $self->notes('build_judy') =~ /^y/i ) {
         $self->SUPER::ACTION_test();
     
-	_chdir_to_judy();
-	
-	$self->_run( MAKE(), 'check' )
-	    or do {
-		warn "checking Judy failed ";
-		_chdir_back();
-		return 0 };
-	
-	_chdir_back();
+        _chdir_to_judy();
+        
+        $self->_run( MAKE(), 'check' )
+            or do {
+                warn "checking Judy failed ";
+                _chdir_back();
+                return 0;
+            };
+        
+        _chdir_back();
 
-	return 1;
+        return 1;
     }
     else {
     	return $self->SUPER::ACTION_test;
