@@ -6,7 +6,7 @@ use lib 'inc';
 
 use My::Judy::Builder;
 use ExtUtils::Liblist;
-use Config '%Config';
+use Config ();
 
 my $builder = My::Judy::Builder->new(
     module_name         => 'Alien::Judy',
@@ -45,7 +45,7 @@ This module will build and install Judy.
 It requires a C compiler and make.
 END
 
-    my $make = $builder->prompt('Make program: ', $Config{make} );
+    my $make = $builder->prompt('Make program: ', $Config::Config{make} );
     $builder->notes('your_make', $make);
 
 
