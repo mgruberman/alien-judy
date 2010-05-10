@@ -113,7 +113,7 @@ sub ACTION_test {
     my ($self) = @_;
     
     if ( $self->notes('build_judy') =~ /^y/i ) {
-        $self->SUPER::ACTION_test;
+        $self->SUPER::ACTION_test();
     
 	_chdir_to_judy();
 	
