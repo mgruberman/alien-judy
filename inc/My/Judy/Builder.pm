@@ -71,7 +71,9 @@ sub _default_config_args {
     my %args = (
         prefix => $prefix,
         libdir => File::Spec->catdir(
-            $self->install_destination('arch'), 'Alien', 'Judy'
+            $self->install_destination('arch'),
+            'Alien',
+            'Judy'
         ),
 	);
     
