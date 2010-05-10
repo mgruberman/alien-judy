@@ -194,6 +194,11 @@ AUTOMAKE_OPTIONS = foreign
 #SUBDIRS = src tool doc test make_includes
 #SUBDIRS = src/JudyCommon src/JudyL src/Judy1 src/JudySL src/JudyHS src/obj
 SUBDIRS = src tool doc test
+
+# These files will be included in our tarballs, even though automake knows
+# nothing else about them.
+#EXTRA_DIST = Makefile.multi original_configure .cvsignore
+DISTCLEANFILES = config.log config.status Makefile libtool make.out
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -557,6 +562,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -628,10 +634,6 @@ uninstall-info: uninstall-info-recursive
 	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am uninstall-info-am
 
-
-# These files will be included in our tarballs, even though automake knows
-# nothing else about them.
-#EXTRA_DIST = Makefile.multi original_configure .cvsignore
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
