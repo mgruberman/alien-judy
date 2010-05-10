@@ -13,8 +13,8 @@ use Cwd ();
 our $Orig_CWD = Cwd::cwd();
 
 sub _chdir_to_judy {
-    chdir 'src/Judy-1.0.5'
-        or die "Can't chdir to src/Judy-1.0.5: $!";
+    chdir 'src/judy-1.0.5'
+        or die "Can't chdir to src/judy-1.0.5: $!";
     return;
 }
 

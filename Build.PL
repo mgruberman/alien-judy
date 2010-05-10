@@ -56,8 +56,8 @@ It requires a C compiler and make.
 
 
     my $run_configure = 'y';
-    if (    -e 'src/Judy-1.0.4/Makefile'
-         && -e 'src/Judy-1.0.4/config.h'
+    if (    -e 'src/judy-1.0.4/Makefile'
+         && -e 'src/judy-1.0.4/config.h'
     ) {
 	$run_configure = $builder->prompt("Re-run Judy's configure? ", 'n');
     }
