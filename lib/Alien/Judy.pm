@@ -42,6 +42,6 @@ sub lib_dirs {
         );
 }
 
-$VERSION = '0.09';
+$VERSION = '0.10';
 
 1;
