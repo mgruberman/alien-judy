@@ -171,34 +171,43 @@ it to find libraries and programs with nonstandard names/locations.
 Report bugs to <dougbaskins@yahoo.com>.
 =cut
 
-    my $bin = $self->install_destination('bin');
+    $DB::single = 1;
+    my $bin  = $self->install_destination('bin');
+
+    my $archbase = $self->install_destination('arch')
+        or confess("Can't get install_destination(arch)");
     my $arch =
         File::Spec->catdir(
-            $self->install_destination('arch'),
+            $archbase,
             'Alien',
             'Judy'
         );
+
     my $man3 = $self->install_destination('libdoc');
-    my $man =
-        File::Spec->canonpath(
-            File::Spec->catdir(
-                $man3,
-                '..'
-            )
-        );
+    my $man;
+    if ( $man3 ) {
+        $man =
+            Cwd::abs_path(
+                File::Spec->catdir(
+                    $man3,
+                    '..'
+                )
+            );
+    }
+
     my $html3 = $self->install_destination('libhtml');
-    my $html =
-        File::Spec->canonpath(
-            File::Spec->catdir(
-                $html3,
-                '..'
-            )
-        );
+    my $html;
+    if ( $html3 ) {
+        $html =
+            Cwd::abs_path(
+                File::Spec->catdir(
+                    $html3,
+                    '..'
+                )
+            );
+    }
 
     my %args = (
-        bindir         => $bin,
-        sbindir        => $bin,
-        libexecdir     => $bin,
         sysconfdir     => $arch,
         sharedstatedir => $arch,
         localstatedir  => $arch,
@@ -207,8 +216,15 @@ Report bugs to <dougbaskins@yahoo.com>.
         oldincludedir  => $arch,
         datarootdir    => $arch,
         datadir        => $arch,
-        mandir         => $man,
-        htmldir        => $html,
+
+        $bin ? ( bindir     => $bin,
+                 sbindir    => $bin,
+                 libexecdir => $bin )
+             : (),
+        $man ? ( mandir => $man )
+             : (),
+        $html ? ( htmldir => $html )
+              : (),
     );
     
     return
