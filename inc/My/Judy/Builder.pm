@@ -171,7 +171,6 @@ it to find libraries and programs with nonstandard names/locations.
 Report bugs to <dougbaskins@yahoo.com>.
 =cut
 
-    $DB::single = 1;
     my $bin  = $self->install_destination('bin');
 
     my $archbase = $self->install_destination('arch')

@@ -29,6 +29,7 @@ sub inc_dirs {
         unique(
             Cwd::getcwd(),
             map { File::Spec->catdir( $_, 'include' ) }
+            grep { defined() && length() }
             @Config::Config{qw( siteprefixexp prefixexp )}
         );
 }
@@ -38,6 +39,7 @@ sub lib_dirs {
         grep { $_ && -d }
         unique(
             map { File::Spec->catdir( $_, 'Alien', 'Judy' ) }
+            grep { defined() && length() }
             @Config::Config{qw(sitearchexp sitearch)}
         );
 }
