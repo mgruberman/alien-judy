@@ -25,7 +25,7 @@ sub unique {
 
 sub inc_dirs {
     return
-        grep { $_ && -d }
+        grep { defined() && length() && -d }
         unique(
             Cwd::getcwd(),
             map { File::Spec->catdir( $_, 'include' ) }
@@ -36,7 +36,7 @@ sub inc_dirs {
 
 sub lib_dirs {
     return
-        grep { $_ && -d }
+        grep { defined() && length() && -d }
         unique(
             map { File::Spec->catdir( $_, 'Alien', 'Judy' ) }
             grep { defined() && length() }
@@ -44,6 +44,6 @@ sub lib_dirs {
         );
 }
 
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 1;
