@@ -6,7 +6,7 @@ Debian_CPANTS.txt
 
 # Compilation artifacts
 *.bs
-*.c
+#*.c
 *.o
 
 # EU::MM
