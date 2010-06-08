@@ -1,5 +1,28 @@
 Revision history for Alien-Judy
 
+0.13    Tue Jun 8 09:34:28 2010 -0700
+        INC and LIB must be able to contain directories that don't yet exist but might in the future if Judy were installed
+        .gitignore was throwing away all the .c files in libJudy
+
+0.12    Sun Jun 6 11:01:44 2010 -0700
+        Install Judy.h to arch directory
+
+0.11    Sat Jun 5 16:23:02 2010 -0700
+        lib_dirs and inc_dirs pass an empty string to File::Spec->catdir to avoid accidentally turning into /
+        Allow *optional* html,man3 docs
+        Remove --prefix setting code
+        Specify many more ./configure directories explicity
+
+0.10    Wed May 12 14:58:07 2010 -0700
+        Update copyright
+        Build.PL is executable
+        Fixed pod syntax
+        Upgrade to Judy-1.0.5
+        Be nicer to 5.005
+        Add inc_dirs and lib_dirs functions
+        Declare dependency on ExtUtils::CBuilder
+        Removed useless Makefile.PL
+
 0.08    Sun Dec 06 20:08:00 2009
         Absolutify prefix to ./configure
         Run configure as `./configure', not `sh configure'. Maybe this helps the person using dmake on Windows
