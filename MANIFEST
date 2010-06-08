@@ -43,7 +43,7 @@ src/judy-1.0.5/doc/ext/README_deliver
 src/judy-1.0.5/doc/int/10minutes.htm
 src/judy-1.0.5/doc/Makefile.am
 src/judy-1.0.5/doc/Makefile.in
-src/judy-1.0.5/doc/man/man3/.touch
+src/judy-1.0.5/doc/man/man3/.keep
 src/judy-1.0.5/examples/Judy1Dup.c
 src/judy-1.0.5/examples/Judy1Dup.h
 src/judy-1.0.5/examples/Judy1DupCheck.c
