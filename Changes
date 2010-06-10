@@ -1,5 +1,17 @@
 Revision history for Alien-Judy
 
+0.14    Thu Jun 10 10:46:13 2010 -0700
+        Re-add missing src/judy-1.0.5/examples/Makefile
+        Absolute paths in .gitignore so my src/judy-1.0.5/examples/Makefile will stop being dropped
+        Cleaning
+        Declare a bunch of missing configure_requires stuff
+        Install Judy.h and libJudy.h to blib/arch/Alien/Judy to make some CPAN smokers happier
+        Alien::Judy declares dynamic_config
+        MYMETA.yml is a distribution artifact
+        Be 5.005 safer
+        MYMETA.yml is a distribution artifact
+        Auto-generate README
+
 0.13    Tue Jun 8 09:34:28 2010 -0700
         INC and LIB must be able to contain directories that don't yet exist but might in the future if Judy were installed
         .gitignore was throwing away all the .c files in libJudy
