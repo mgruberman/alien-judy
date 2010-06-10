@@ -11,8 +11,6 @@ use Config ();
 my $builder = My::Judy::Builder->new(
     module_name         => 'Alien::Judy',
     license             => 'perl',
-    dist_author         => 'Joshua ben Jore <jjore@cpan.org>',
-    dist_version_from   => 'lib/Alien/Judy.pm',
     configure_requires => {
         'perl' => '5.005',
 
@@ -28,7 +26,7 @@ my $builder = My::Judy::Builder->new(
     },
     build_requires => {
         'ExtUtils::CBuilder' => 0,
-        'Test::More' => 0,
+        'Test::More'         => 0,
     },
     add_to_cleanup      => [ 'Alien-Judy-*' ],
 
