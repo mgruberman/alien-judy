@@ -1,16 +1,16 @@
 package My::Judy::Builder;
 
 use strict;
-use warnings;
 
 use Module::Build;
-our @ISA = 'Module::Build';
+use vars qw( @ISA $Orig_CWD );
+@ISA = 'Module::Build';
 
 use Config ();
 use File::Spec;
 use Cwd ();
 
-our $Orig_CWD = Cwd::cwd();
+$Orig_CWD = Cwd::cwd();
 
 sub _chdir_to_judy {
     chdir 'src/judy-1.0.5'

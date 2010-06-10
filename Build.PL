@@ -1,7 +1,6 @@
-#!perl
+#!perl -w
 use strict;
 use 5.005;
-use warnings;
 use lib qw( inc lib );
 
 use My::Judy::Builder;
