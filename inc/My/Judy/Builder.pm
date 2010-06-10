@@ -6,9 +6,11 @@ use Module::Build;
 use vars qw( @ISA $Orig_CWD );
 @ISA = 'Module::Build';
 
-use Config ();
-use File::Spec;
-use Cwd ();
+use Config     ();
+use File::Spec ();
+use File::Path ();
+use File::Copy ();
+use Cwd        ();
 
 $Orig_CWD = Cwd::cwd();
 
@@ -247,7 +249,21 @@ sub ACTION_code {
                 _chdir_back();
                 return 0;
             };
-        
+
+        # "Install" a minor copy of Judy.h and libJudy.so to my own
+        # blib/arch/Alien/Judy because it looks like some CPAN smokers
+        # don't install dependencies but just adjust @INC to point
+        # into depended-on- blib/* directories.
+        my $alien = File::Spec->catdir( $Orig_CWD, 'blib', 'arch', 'Alien', 'Judy' );
+        File::Path::make_path( $alien );
+        my @files = (
+            'src/Judy.h',
+            'src/obj/.libs/libJudy.so',
+        );
+        for my $file ( @files ) {
+            File::Copy::copy( $file, $alien );
+        }
+
         _chdir_back();
 
         return 1;
