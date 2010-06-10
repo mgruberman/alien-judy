@@ -20,6 +20,7 @@ my $builder = My::Judy::Builder->new(
     add_to_cleanup      => [ 'Alien-Judy-*' ],
 
     create_readme  => 1,
+    dynamic_config => 1,
 );
 
 $builder->create_build_script();
