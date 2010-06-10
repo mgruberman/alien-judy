@@ -13,6 +13,19 @@ my $builder = My::Judy::Builder->new(
     license             => 'perl',
     dist_author         => 'Joshua ben Jore <jjore@cpan.org>',
     dist_version_from   => 'lib/Alien/Judy.pm',
+    configure_requires => {
+        'perl' => '5.005',
+
+        'Config'            => 0,
+        'Cwd'               => 0,
+        'ExtUtils::LibList' => 0,
+        'File::Copy'        => 0,
+        'File::Path'        => 0,
+        'File::Spec'        => 0,
+        'Module::Build'     => 0,
+        'lib'               => 0,
+        'vars'              => 0,
+    },
     build_requires => {
         'ExtUtils::CBuilder' => 0,
         'Test::More' => 0,
