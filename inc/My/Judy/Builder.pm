@@ -258,7 +258,7 @@ sub ACTION_code {
         File::Path::make_path( $alien );
         my @files = (
             'src/Judy.h',
-            'src/obj/.libs/libJudy.so',
+            glob('src/obj/.libs/*'),
         );
         for my $file ( @files ) {
             File::Copy::copy( $file, $alien );
