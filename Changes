@@ -1,5 +1,8 @@
 Revision history for Alien-Judy
 
+0.15    Thu Jun 10 11:34:35 2010 -0700
+        Glob for libJudy.so because naming conventions differ between platforms
+
 0.14    Thu Jun 10 10:46:13 2010 -0700
         Re-add missing src/judy-1.0.5/examples/Makefile
         Absolute paths in .gitignore so my src/judy-1.0.5/examples/Makefile will stop being dropped
