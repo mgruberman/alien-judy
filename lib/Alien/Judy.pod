@@ -7,6 +7,15 @@ Alien::Judy - A wrapper for installing the Judy library
 Alien::Judy is a wrapper to ease installing the Judy library from
 L<http://judy.sourceforge.net>.
 
+=head1 INSTALLATION
+
+To install this module, run the following commands:
+
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
 =head1 EXPORTABLE FUNCTIONS
 
 =over
