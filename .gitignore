@@ -29,6 +29,7 @@ Build
 # Distribution artifacts
 MANIFEST.bak
 META.yml
+MYMETA.yml
 
 # bin/release
 Changes.bak
