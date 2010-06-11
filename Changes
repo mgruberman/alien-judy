@@ -1,5 +1,8 @@
 Revision history for Alien-Judy
 
+0.16    Thu Jun 10 22:19:03 2010 -0700
+        Find *.h and *.so in @INC/Alien/Judy too
+
 0.15    Thu Jun 10 11:34:35 2010 -0700
         Glob for libJudy.so because naming conventions differ between platforms
 

@@ -36,6 +36,6 @@ sub inc_dirs {
 
 *lib_dirs = \&inc_dirs;
 
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 1;
