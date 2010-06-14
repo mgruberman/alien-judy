@@ -16,7 +16,7 @@ my $builder = My::Judy::Builder->new(
 
         'Config'            => 0,
         'Cwd'               => 0,
-        'ExtUtils::LibList' => 0,
+        'ExtUtils::Liblist' => 0,
         'File::Copy'        => 0,
         'File::Path'        => 0,
         'File::Spec'        => 0,
