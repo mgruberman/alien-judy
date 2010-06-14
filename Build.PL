@@ -78,12 +78,12 @@ $builder->notes('have_judy', $have_judy );
 
 my $build_judy = 'y';
 if ( $have_judy ) {
-    $build_judy = $builder->prompt('Found -lJudy. Build Judy anyway?', 'n');
+    $build_judy = $builder->y_n('Found -lJudy. Build Judy anyway?', 'n');
 }
 $builder->notes('build_judy',$build_judy);
 
 
-if ( $build_judy =~ /^y/i ) {
+if ( $build_judy ) {
     print q{
 
 ---------------------------------------------------------------------
@@ -95,18 +95,17 @@ It requires a C compiler and make.
     my $make = $builder->prompt('Make program: ', $Config::Config{make} );
     $builder->notes('your_make', $make);
 
-
     my $run_configure = 'y';
     if (    -e 'src/judy-1.0.4/Makefile'
          && -e 'src/judy-1.0.4/config.h'
     ) {
-	$run_configure = $builder->prompt("Re-run Judy's configure? ", 'n');
+	$run_configure = $builder->y_n("Re-run Judy's configure? ", 'n');
     }
     else {
-	$run_configure = $builder->prompt("Run Judy's configure now? ",'y');
+	$run_configure = $builder->y_n("Run Judy's configure now? ",'y');
     }
     
-    if ( $run_configure =~ /^y/i ) {
+    if ( $run_configure ) {
 	my $configure_args = $builder->prompt(
             'Pass any arguments to configure: ',
             $builder->_default_config_args
