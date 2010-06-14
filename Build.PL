@@ -14,21 +14,40 @@ my $builder = My::Judy::Builder->new(
     configure_requires => {
         'perl' => '5.005',
 
-        'Config'            => 0,
+        # Core only and unavailable on CPAN
+
+        # Perl 5+
         'Cwd'               => 0,
+
+        # Perl 5.1+
         'ExtUtils::Liblist' => 0,
-        'File::Copy'        => 0,
         'File::Path'        => 0,
-        'File::Spec'        => 0,
-        'Module::Build'     => 0,
         'lib'               => 0,
+
+        # Perl 5.2+
+        'File::Copy'        => 0,
         'vars'              => 0,
+
+        # Perl 5.3.7+
+        # 'Config' => 0,
+
+        # Perl 5.5+
+        'File::Spec'        => 0,
+
+        # Perl 5.9.4+
+        'Module::Build'     => 0,
     },
     build_requires => {
-        'ExtUtils::CBuilder' => 0,
+        # Perl 5.6.2+
         'Test::More'         => 0,
+
+        # Perl 5.9.3+
+        'ExtUtils::CBuilder' => 0,
     },
-    add_to_cleanup      => [ 'Alien-Judy-*' ],
+    add_to_cleanup      => [
+        'Alien-Judy-*',
+        # TODO: all the generated files by src/judy-1.0.5/
+    ],
 
     create_readme  => 1,
     dynamic_config => 1,
