@@ -1,5 +1,10 @@
 Revision history for Alien-Judy
 
+0.17    Mon Jun 14 00:44:44 2010 -0700
+        Use y_n instead of prompt
+        Annotate core requirements by the version of perl they appear in
+        Depend on ExtUtils::Liblist, not ExtUtils::LibList
+
 0.16    Thu Jun 10 22:19:03 2010 -0700
         Find *.h and *.so in @INC/Alien/Judy too
 
