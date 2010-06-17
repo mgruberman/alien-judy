@@ -22,14 +22,23 @@ use Sub::Exporter -setup => {
 
 # TODO: add literate documentation
 sub inc_dirs {
+    # Find files from ., $sitearch and @INC.
+    my @dirs =
+        grep { defined() && length() }
+            @Config::Config{qw(sitearchexp sitearch)},
+            @INC,
+            Cwd::getcwd();
+
+    # But first try to find them in $_/Alien/Judy/
+    unshift @dirs,
+        map { File::Spec->catdir( $_, 'Alien', 'Judy' ) }
+        @dirs;
+
+    # Return the unique-ified list
     my %seen;
     return
         grep { ! $seen{$_}++ }
-            Cwd::getcwd(),
-            map { File::Spec->catdir( $_, 'Alien', 'Judy' ) }
-            grep { defined() && length() }
-            @Config::Config{qw(sitearchexp sitearch)},
-            @INC;
+        @dirs;
 }
 
 $VERSION = '0.17';
