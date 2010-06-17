@@ -1,3 +1,6 @@
+# This is the Alien::Judy module, a way to ensure that users who don't
+# natively have libJudy on their system can still get one. It provides
+# libJudy.so and Judy.h at the path $Config{sitearch}/Alien/Judy.
 package Alien::Judy;
 
 use strict;
