@@ -5,15 +5,16 @@ package Alien::Judy;
 
 use strict;
 use warnings;
-use vars qw( $VERSION );
+use vars qw( $VERSION $DEBUG $HANDLE );
 use Config ();
 use Cwd ();
 use File::Spec ();
+use DynaLoader ();
 
-# This module allows users to import its two public functions
-# inc_dirs() and lib_dirs().
+# This module allows users to import its three public functions
+# inc_dirs(), lib_dirs(), and dl_load_libjudy().
 use Sub::Exporter -setup => {
-    exports => [qw( inc_dirs lib_dirs )]
+    exports => [qw( inc_dirs lib_dirs dl_load_libjudy )]
 };
 
 # The provided functions inc_dirs() and lib_dirs() are currently
@@ -39,6 +40,95 @@ sub inc_dirs {
     return
         grep { ! $seen{$_}++ }
         @dirs;
+}
+
+# This module depends on libJudy from
+# http://judy.sourceforge.net. Either I can find it as a
+# system-installed library:
+#
+#   apt-get install libjudydebian1  # for libJudy.so
+#   apt-get install libjudy-dev     # for Judy.h
+#
+# Or I can get it by the perl CPAN module Alien::Judy which builds and
+# installs Judy.h and libJudy.so into $Config{sitearch}/Alien/Judy.
+#
+# CPAN testers however won't have actually installed libJudy so I'll
+# need to find it in @INC as set by $ENV{PERL5LIB} with a typical
+# value of:
+#
+#   $INC[...] = '/home/josh/.cpan/build/Alien-Judy-0.01/blib/arch'
+#
+# but the files Judy.h and libJudy.so are a couple levels deeper at:
+#
+#   $INC[...] = '/home/josh/.cpan/build/Alien-Judy-0.01/blib/arch/Alien/Judy'
+#
+sub _libjudy_candidates {
+    # Get a list of possible libJudy.so files.
+    #
+    # When writing this module, I found it would occasionally not only
+    # find libJudy.so but also blib/arch/Judy/Judy.so which is the
+    # Perl XS module. That was when this -lJudy resolving code was
+    # directly in the Judy cpan module though which has a lib/Judy.xs
+    # file. It's plausible that it's entirely irrelevant now that this
+    # is in Alien::Judy.
+    #
+    my @candidate_libs = DynaLoader::dl_findfile('-lJudy');
+    if ( $DEBUG ) {
+        printf STDERR "candidates=@candidate_libs at %s line %d.\n", __FILE__, __LINE__;
+    }
+
+    return @candidate_libs;
+}
+
+sub _dl_load_libjudy {
+    my @candidate_libs = @_;
+
+    # Attempt to load each candidate until something succeeds. If one
+    # of the candidates happens to be the Perl XS module
+    # blib/arch/Judy/Judy.so then I'd like loading to keep trying and
+    # not fail. If I know how to predictably filter
+    # blib/arch/Judy/Judy.so out of this list I'd do that.
+    my $libjudy_loaded;
+  CANDIDATE_LIBRARY:
+    for my $libjudy_file ( @candidate_libs ) {
+        my $ok = eval {
+            $HANDLE = DynaLoader::dl_load_file( $libjudy_file, 0x01 );
+            1;
+        };
+        if ( $DEBUG ) {
+            my $msgf =
+                $ok
+                ? "Loaded $libjudy_file at %s line %d.\n"
+                : "Couldn't load $libjudy_file: $@ at %s line %d.\n";
+            printf STDERR $msgf, __FILE__, __LINE__;
+        }
+
+        if ( $ok ) {
+            $libjudy_loaded = 1;
+            last CANDIDATE_LIBRARY;
+        }
+    }
+
+    return $libjudy_loaded;
+}
+
+sub dl_load_libjudy {
+    local @DynaLoader::dl_library_path = (
+        @DynaLoader::dl_library_path,
+        lib_dirs()
+    );
+
+    # Enable DynaLoader debugging along with Judy debugging
+    local $DynaLoader::dl_debug = $DynaLoader::dl_debug;
+    if ( $DEBUG ) {
+        $DynaLoader::dl_debug ||= 1;
+    }
+
+    my @libjudy_files = _libjudy_candidates();
+
+    my $ok = _dl_load_libjudy( @libjudy_files );
+
+    return $ok;
 }
 
 $VERSION = '0.17';
