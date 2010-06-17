@@ -4,6 +4,7 @@
 package Alien::Judy;
 
 use strict;
+use warnings;
 
 use vars qw( $VERSION );
 

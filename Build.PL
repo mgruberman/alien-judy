@@ -34,6 +34,9 @@ my $builder = My::Judy::Builder->new(
         # Perl 5.5+
         'File::Spec'        => 0,
 
+        # Perl 5.6+
+        'warnings'          => 0,
+
         # Perl 5.9.4+
         'Module::Build'     => 0,
     },
