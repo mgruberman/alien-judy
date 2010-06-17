@@ -20,6 +20,7 @@ use Sub::Exporter -setup => {
 # identical. Initially, they weren't.
 *lib_dirs = \&inc_dirs;
 
+# TODO: add literate documentation
 sub inc_dirs {
     my %seen;
     return
