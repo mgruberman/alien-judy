@@ -16,28 +16,19 @@ use Sub::Exporter -setup => {
     exports => [qw( inc_dirs lib_dirs )]
 };
 
-
-sub unique {
-    my %seen;
-    return
-        grep { ! $seen{$_}++ }
-        @_;
-}
-
-
 # The provided functions inc_dirs() and lib_dirs() are currently
 # identical. Initially, they weren't.
 *lib_dirs = \&inc_dirs;
 
 sub inc_dirs {
+    my %seen;
     return
-        unique(
+        grep { ! $seen{$_}++ }
             Cwd::getcwd(),
             map { File::Spec->catdir( $_, 'Alien', 'Judy' ) }
             grep { defined() && length() }
             @Config::Config{qw(sitearchexp sitearch)},
-            @INC
-        );
+            @INC;
 }
 
 $VERSION = '0.17';
