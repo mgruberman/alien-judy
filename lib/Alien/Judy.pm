@@ -24,6 +24,11 @@ sub unique {
         @_;
 }
 
+
+# The provided functions inc_dirs() and lib_dirs() are currently
+# identical. Initially, they weren't.
+*lib_dirs = \&inc_dirs;
+
 sub inc_dirs {
     return
         unique(
@@ -34,8 +39,6 @@ sub inc_dirs {
             @INC
         );
 }
-
-*lib_dirs = \&inc_dirs;
 
 $VERSION = '0.17';
 
