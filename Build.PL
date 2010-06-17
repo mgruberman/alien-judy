@@ -44,6 +44,9 @@ my $builder = My::Judy::Builder->new(
         # Perl 5.9.3+
         'ExtUtils::CBuilder' => 0,
     },
+    requires => {
+        'Sub::Exporter' => 0,
+    },
     add_to_cleanup      => [
         'Alien-Judy-*',
         # TODO: all the generated files by src/judy-1.0.5/

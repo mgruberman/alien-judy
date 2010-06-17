@@ -2,19 +2,18 @@ package Alien::Judy;
 
 use strict;
 
-use vars qw( @EXPORT_OK %EXPORT_TAGS $VERSION @ISA );
+use vars qw( $VERSION );
 
 use Config ();
 use Cwd ();
 use File::Spec ();
 
-use Exporter ();
-@ISA = 'Exporter';
+# This module allows users to import its two public functions
+# inc_dirs() and lib_dirs().
+use Sub::Exporter -setup => {
+    exports => [qw( inc_dirs lib_dirs )]
+};
 
-@EXPORT_OK = qw( inc_dirs lib_dirs );
-%EXPORT_TAGS = (
-    all => \ @EXPORT_OK,
-);
 
 sub unique {
     my %seen;
