@@ -31,6 +31,10 @@ Returns a list of directories perhaps likely to contain a
 F<libJudy.so> (or F<Judy.dll> or whatever is appropriate for your
 platform) if Alien::Judy was made responsible for installing libJudy.
 
+=item dl_load_libjudy
+
+Loads libJudy into the process
+
 =back
 
 =head1 AUTHOR
