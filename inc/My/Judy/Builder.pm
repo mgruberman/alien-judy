@@ -322,4 +322,79 @@ sub ACTION_install {
     }
 }
 
+sub ACTION_clean {
+    my ( $self ) = @_;
+
+    $self->SUPER::ACTION_clean();
+
+    print STDERR <<'ACTION_clean';
+This may fail. Sorry. It's just the libJudy library. It can provide a Makefile
+without being able to use it for `make clean'.
+ACTION_clean
+
+    my $ok = eval {
+        _chdir_to_judy();
+        $self->_run(  MAKE(), 'clean' );
+        1;
+    };
+    my $failure_msg = $@;
+    _chdir_back();
+
+    if ( ! $ok ) {
+        print STDERR $failure_msg;
+    }
+
+    return;
+}
+
+sub ACTION_realclean {
+    my ( $self ) = @_;
+
+    $self->SUPER::ACTION_clean();
+
+    print STDERR <<'ACTION_realclean';
+This may fail. Sorry. It's just the libJudy library. It can provide a Makefile
+without being able to use it for `make clean'.
+ACTION_realclean
+
+    my $ok = eval {
+        _chdir_to_judy();
+        $self->_run(  MAKE(), 'distclean' );
+        1;
+    };
+    my $failure_msg = $@;
+    _chdir_back();
+
+    if ( ! $ok ) {
+        print STDERR $failure_msg;
+    }
+
+    return;
+}
+
+sub ACTION_distclean {
+    my ( $self ) = @_;
+
+    $self->SUPER::ACTION_clean();
+
+    print STDERR <<'ACTION_distclean';
+This may fail. Sorry. It's just the libJudy library. It can provide a Makefile
+without being able to use it for `make clean'.
+ACTION_distclean
+
+    my $ok = eval {
+        _chdir_to_judy();
+        $self->_run(  MAKE(), 'distclean' );
+        1;
+    };
+    my $failure_msg = $@;
+    _chdir_back();
+
+    if ( ! $ok ) {
+        print STDERR $failure_msg;
+    }
+
+    return;
+}
+
 1;
