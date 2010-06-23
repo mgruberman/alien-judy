@@ -1,5 +1,9 @@
 Revision history for Alien-Judy
 
+0.19    Tue Jun 22 (during the TPF auction)
+        Fold both configure_requires and build_requires up to requires
+        Require Sub::Exporter for configuration
+
 0.18    Thu Jun 17 08:20:00 2010 -0700
         Add dl_load_libjudy function
         use warnings
