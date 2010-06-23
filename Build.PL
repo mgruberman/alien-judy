@@ -8,48 +8,56 @@ use Alien::Judy ();
 use ExtUtils::Liblist;
 use Config ();
 
+my %configure_requires = (
+    'perl' => '5.005',
+
+    # Core only and unavailable on CPAN
+
+    # Perl 5+
+    'Cwd'               => 0,
+
+    # Perl 5.1+
+    'ExtUtils::Liblist' => 0,
+    'File::Path'        => 0,
+    'lib'               => 0,
+
+    # Perl 5.2+
+    'File::Copy'        => 0,
+    'vars'              => 0,
+
+    # Perl 5.3.7+
+    # 'Config' => 0,
+
+    # Perl 5.5+
+    'File::Spec'        => 0,
+
+    # Perl 5.6+
+    'warnings'          => 0,
+
+    # Perl 5.9.4+
+    'Module::Build'     => 0,
+);
+my %build_requires = (
+    %configure_requires,
+
+    # Perl 5.6.2+
+    'Test::More'         => 0,
+
+    # Perl 5.9.3+
+    'ExtUtils::CBuilder' => 0,
+);
+my %requires = (
+    %build_requires,
+
+    'Sub::Exporter' => 0,
+);
+
 my $builder = My::Judy::Builder->new(
     module_name         => 'Alien::Judy',
     license             => 'perl',
-    configure_requires => {
-        'perl' => '5.005',
-
-        # Core only and unavailable on CPAN
-
-        # Perl 5+
-        'Cwd'               => 0,
-
-        # Perl 5.1+
-        'ExtUtils::Liblist' => 0,
-        'File::Path'        => 0,
-        'lib'               => 0,
-
-        # Perl 5.2+
-        'File::Copy'        => 0,
-        'vars'              => 0,
-
-        # Perl 5.3.7+
-        # 'Config' => 0,
-
-        # Perl 5.5+
-        'File::Spec'        => 0,
-
-        # Perl 5.6+
-        'warnings'          => 0,
-
-        # Perl 5.9.4+
-        'Module::Build'     => 0,
-    },
-    build_requires => {
-        # Perl 5.6.2+
-        'Test::More'         => 0,
-
-        # Perl 5.9.3+
-        'ExtUtils::CBuilder' => 0,
-    },
-    requires => {
-        'Sub::Exporter' => 0,
-    },
+    configure_requires  => \ %configure_requires,
+    build_requires      => \ %build_requires,
+    requires            => \ %requires,
     add_to_cleanup      => [
         'Alien-Judy-*',
         # TODO: all the generated files by src/judy-1.0.5/
@@ -110,14 +118,14 @@ It requires a C compiler and make.
     else {
 	$run_configure = $builder->y_n("Run Judy's configure now? ",'y');
     }
-    
+
     if ( $run_configure ) {
 	my $configure_args = $builder->prompt(
             'Pass any arguments to configure: ',
             $builder->_default_config_args
         );
 	$builder->notes("configure_args", $configure_args);
-	
+
 	if( $builder->_run_judy_configure ) {
 	    print q{
 
