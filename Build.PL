@@ -36,6 +36,9 @@ my %configure_requires = (
 
     # Perl 5.9.4+
     'Module::Build'     => 0,
+
+    # CPAN
+    'Sub::Exporter' => 0,
 );
 my %build_requires = (
     %configure_requires,
@@ -48,8 +51,6 @@ my %build_requires = (
 );
 my %requires = (
     %build_requires,
-
-    'Sub::Exporter' => 0,
 );
 
 my $builder = My::Judy::Builder->new(
