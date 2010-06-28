@@ -104,10 +104,13 @@ if ( $build_judy ) {
 ---------------------------------------------------------------------
 This module will build and install Judy.
 
-It requires a C compiler and make.
+It requires a C compiler and GNU make.
 };
 
-    my $make = $builder->prompt('Make program: ', $Config::Config{make} );
+    my $make_def = -x $Config::Config{gmake} ? $Config::Config{gmake} :
+                   -x $Config::Config{make}  ? $Config::Config{make}  :
+                                               $Config::Config{gmake} || $Config::Config{make} || 'make';
+    my $make = $builder->prompt('Make program: ', $make_def );
     $builder->notes('your_make', $make);
 
     my $run_configure = 'y';
