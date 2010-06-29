@@ -1,10 +1,21 @@
 #!perl -w
 use strict;
 use 5.005;
-use lib qw( inc lib );
 
-use My::Judy::Builder;
-use Alien::Judy ();
+BEGIN {
+    my @orig_inc = @INC;
+    local @INC = (
+        @orig_inc,
+        'inc'
+    );
+    require My::Judy::Builder; # inc/My/Judy/Builder.pm
+    require File::Which;       # your own copy or inc/File/Which.pm
+
+    # Load *this* Alien::Judy from lib/Alien/Judy.pm and not any copy installed
+    # into this perl already.
+    require 'lib/Alien/Judy.pm';
+    $INC{'Alien/Judy.pm'} = 'lib/Alien/Judy.pm';
+}
 use ExtUtils::Liblist;
 use Config ();
 
@@ -107,9 +118,23 @@ This module will build and install Judy.
 It requires a C compiler and GNU make.
 };
 
-    my $make_def = -x $Config::Config{gmake} ? $Config::Config{gmake} :
-                   -x $Config::Config{make}  ? $Config::Config{make}  :
-                                               $Config::Config{gmake} || $Config::Config{make} || 'make';
+    my $make_def;
+    if ( $Config::Config{gmake} ) {
+        $make_def = File::Which::which( $Config::Config{gmake} );
+    }
+    if ( ! $make_def && $Config::Config{make} ) {
+        $make_def = File::Which::which( $Config::Config{make} );
+    }
+    if ( ! $make_def && $^O =~ /bsd/i ) {
+        $make_def =
+               $Config::Config{gmake}
+            || $Config::Config{make};
+    }
+    if ( ! $make_def ) {
+        $make_def =
+               $Config::Config{gmake}
+            || $Config::Config{make};
+    }
     my $make = $builder->prompt('Make program: ', $make_def );
     $builder->notes('your_make', $make);
 
