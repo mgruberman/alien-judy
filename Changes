@@ -1,6 +1,10 @@
 Revision history for Alien-Judy
 
-0.20    Mon Jun 28
+0.21    Tue Jun 29, 2010
+        Perl's $Config{gmake} isn't reliable so work around that to
+        find a useful GNU make
+
+0.20    Mon Jun 28, 2010
         Try to find gmake if it's available
 
 0.19    Tue Jun 22 (during the TPF auction)
