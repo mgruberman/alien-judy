@@ -255,7 +255,7 @@ sub ACTION_code {
         # don't install dependencies but just adjust @INC to point
         # into depended-on- blib/* directories.
         my $alien = File::Spec->catdir( $Orig_CWD, 'blib', 'arch', 'Alien', 'Judy' );
-        File::Path::make_path( $alien );
+        File::Path::mkpath( $alien );
         my @files = (
             'src/Judy.h',
             glob('src/obj/.libs/*'),
