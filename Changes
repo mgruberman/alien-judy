@@ -1,5 +1,11 @@
 Revision history for Alien-Judy
 
+0.22    Tue Jun 29, 2010
+        Use older File::Path API to be friendlier to older perls
+        Bundle Module::Build to be friendlier to older perls
+        Bundle File::Which to avoid it as a configure_requires requirement
+        Quashed a "only once" warning
+
 0.21    Tue Jun 29, 2010
         Perl's $Config{gmake} isn't reliable so work around that to
         find a useful GNU make
