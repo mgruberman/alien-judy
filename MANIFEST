@@ -3,7 +3,9 @@
 .releaserc
 Build.PL
 Changes
+inc/File/Which.pm
 inc/My/Judy/Builder.pm
+inc/Sub/Exporter.pm
 lib/Alien/Judy.pm
 lib/Alien/Judy.pod
 MANIFEST

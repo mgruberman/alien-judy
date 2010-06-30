@@ -397,4 +397,130 @@ ACTION_distclean
     return;
 }
 
+sub _default_make {
+    my $make_def;
+    if ( $Config::Config{gmake} ) {
+        $make_def = File::Which::which( $Config::Config{gmake} );
+    }
+    if ( ! $make_def && $Config::Config{make} ) {
+        $make_def = File::Which::which( $Config::Config{make} );
+    }
+    if ( ! $make_def && $^O =~ /bsd/i ) {
+        $make_def =
+               $Config::Config{gmake}
+            || $Config::Config{make};
+    }
+    if ( ! $make_def ) {
+        $make_def =
+               $Config::Config{gmake}
+            || $Config::Config{make};
+    }
+    return $make_def;
+}
+
+sub _ensure_make {
+    my ( $self ) = @_;
+
+    if ( ! $self->notes('your_make') ) {
+        $self->_prompt_for_make;
+    }
+
+    return;
+}
+
+sub _prompt_for_make {
+    my ( $self ) = @_;
+
+    print q{
+
+---------------------------------------------------------------------
+This module will build and install Judy.
+
+It requires a C compiler and GNU make.
+};
+
+    my $make_def = $self->_default_make;
+    my $make = $self->prompt('Make program: ', $make_def );
+    $self->notes('your_make', $make);
+
+    return;
+}
+
+sub _setup_for_judy {
+    my ( $self ) = @_;
+
+    my $have_judy = 1;
+    {
+        local $SIG{__WARN__} = sub {
+            my $warning = "@_";
+            if ( $warning =~ /No library found for -lJudy/ ) {
+                $have_judy = 0;
+            }
+        };
+        
+        my $lib_dirs =
+            join ' ',
+            map { "-L$_" }
+            Alien::Judy::lib_dirs();
+        
+        ExtUtils::Liblist->ext(
+            "$lib_dirs -lJudy",
+            1
+        );
+    }
+    $self->notes('have_judy', $have_judy );
+
+    my $build_judy = 'y';
+    if ( $have_judy ) {
+        $build_judy = $self->y_n('Found -lJudy. Build Judy anyway?', 'n');
+    }
+    $self->notes('build_judy',$build_judy);
+
+    if ( $build_judy ) {
+        
+        $self->_prompt_for_make;
+        $self->_run_judy_configure1;
+    }
+
+    return;
+}
+
+sub _run_judy_configure1 {
+    my ( $self ) = @_;
+
+    my $run_configure = 'y';
+    if (    -e 'src/judy-1.0.4/Makefile'
+         && -e 'src/judy-1.0.4/config.h'
+    ) {
+	$run_configure = $self->y_n("Re-run Judy's configure? ", 'n');
+    }
+    else {
+	$run_configure = $self->y_n("Run Judy's configure now? ",'y');
+    }
+
+    if ( $run_configure ) {
+	my $configure_args = $self->prompt(
+            'Pass any arguments to configure: ',
+            $self->_default_config_args
+        );
+	$self->notes("configure_args", $configure_args);
+
+	if( $self->_run_judy_configure ) {
+	    print q{
+
+You should now run ./Build.
+};
+	}
+	else {
+	    print q{
+    Something went wrong with the Judy configuration.
+    You should correct it and re-run Build.PL.
+};
+            exit 1;
+	}
+    }
+
+    return;
+}
+
 1;
