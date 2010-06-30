@@ -33,7 +33,7 @@ $INC{'Alien/Judy.pm'} = 'lib/Alien/Judy.pm';
 #
 # Remove the evidence of my stub Sub::Exporter so Module::Build can
 # still try to resolve the requirement if needed.
-if ( $main::INC_SUB_EXPORTER ) {
+if ( $main::INC_SUB_EXPORTER || $main::INC_SUB_EXPORTER ) {
     delete $INC{'Sub/Exporter.pm'};
 }
 
