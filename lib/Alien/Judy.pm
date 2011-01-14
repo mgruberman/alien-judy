@@ -77,11 +77,30 @@ sub _libjudy_candidates {
         printf STDERR "candidates=@candidate_libs at %s line %d.\n", __FILE__, __LINE__;
     }
 
+    # I found that Solaris would find libJudy.so with DynaLoader but
+    # ld.so.1 when loading libJudy.so for Judy.pm would fail to find
+    # the right library to link against.
+    #
+    # I don't particularly understand it however what worked was to
+    # attempt to load libJudy.so.1 first.
+    my @dot_one =
+        grep { -f }
+        map { "$_.1" }
+        @candidate_libs;
+
+    unshift @candidate_libs, @dot_one;
+
     return @candidate_libs;
 }
 
 sub _dl_load_libjudy {
     my @candidate_libs = @_;
+
+    # The libJudy I find must provide the base functions from the
+    # libJudy library. This is to possibly skip "wrong" libJudy
+    # libraries.
+print "IAMHERE\n";
+    @DynaLoader::dl_require_symbols = 'Judy1Test';
 
     # Attempt to load each candidate until something succeeds. If one
     # of the candidates happens to be the Perl XS module
@@ -131,6 +150,6 @@ sub dl_load_libjudy {
     return $ok;
 }
 
-$VERSION = '0.20';
+$VERSION = '0.21';
 
 1;
