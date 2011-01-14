@@ -1,7 +1,9 @@
 Revision history for Alien-Judy
 
-0.21    Fri Jan 11, 2011
+0.22    Fri Jan 11, 2011
         Load libJudy.so.1 for OpenSolaris
+
+0.21    ???
 
 0.20    Mon Jun 28
         Try to find gmake if it's available
