@@ -99,8 +99,7 @@ sub _dl_load_libjudy {
     # The libJudy I find must provide the base functions from the
     # libJudy library. This is to possibly skip "wrong" libJudy
     # libraries.
-print "IAMHERE\n";
-    @DynaLoader::dl_require_symbols = 'Judy1Test';
+#    @DynaLoader::dl_require_symbols = 'Judy1Test';
 
     # Attempt to load each candidate until something succeeds. If one
     # of the candidates happens to be the Perl XS module
@@ -150,6 +149,6 @@ sub dl_load_libjudy {
     return $ok;
 }
 
-$VERSION = '0.23';
+$VERSION = '0.24';
 
 1;

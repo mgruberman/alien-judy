@@ -1,5 +1,10 @@
 Revision history for Alien-Judy
 
+0.24    Fri Jan 11, 2011
+        Remove DynaLoader check for Judy1Test. Needed? It was
+        accidentally committed before.
+
+
 0.23    Fri Jan 11, 2011
         Load libJudy.so.1 for OpenSolaris
 
