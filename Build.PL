@@ -107,9 +107,7 @@ This module will build and install Judy.
 It requires a C compiler and GNU make.
 };
 
-    my $make_def = -x $Config::Config{gmake} ? $Config::Config{gmake} :
-                   -x $Config::Config{make}  ? $Config::Config{make}  :
-                                               $Config::Config{gmake} || $Config::Config{make} || 'make';
+    my $make_def = find_gnu_make();
     my $make = $builder->prompt('Make program: ', $make_def );
     $builder->notes('your_make', $make);
 
@@ -144,4 +142,32 @@ You should now run ./Build.
             exit 1;
 	}
     }
+}
+
+sub find_gnu_make {
+    my $make_ver = `make --version`;
+    my $make_ok  = $? == 0;
+
+    my $make;
+    if ( $make_ver =~ /^GNU Make/ ) {
+        $make = 'make';
+    }
+    else {
+        my $gmake_ver = `gmake --version`;
+        my $gmake_ok = $? == 0;
+
+        if ( $gmake_ver =~ /^GNU Make/ ) {
+            $make = 'gmake';
+        }
+        elsif ( $make_ok ) {
+            $make = 'make';
+        }
+        elsif ( $gmake_ok ) {
+            $make = 'gmake';
+        }
+        else {
+            $make = 'make';
+        }
+    }
+    return $make;
 }
