@@ -1,6 +1,6 @@
 Revision history for Alien-Judy
 
-....
+0.25    Tue Jan 18, 2011
         Ignore $Config{make} and $Config{gmake} because they're not actually
           useful. Look for GNU make more directly.
         Fix documentation for inc_dirs and lib_dirs.
