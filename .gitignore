@@ -26,6 +26,9 @@
 *#
 *~
 
+# Dist::Zilla
+/.build
+
 # Distribution artifacts
 /MANIFEST.bak
 /META.yml
