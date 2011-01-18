@@ -20,12 +20,12 @@ To install this module, run the following commands:
 
 =over
 
-=item inc_dir
+=item inc_dirs
 
 Returns a list of directories perhaps likely to contain a F<Judy.h> if
 Alien::Judy was made responsible for installing libJudy.
 
-=item lib_dir
+=item lib_dirs
 
 Returns a list of directories perhaps likely to contain a
 F<libJudy.so> (or F<Judy.dll> or whatever is appropriate for your

@@ -2,7 +2,8 @@ Revision history for Alien-Judy
 
 ....
         Ignore $Config{make} and $Config{gmake} because they're not actually
-        useful. Look for GNU make more directly.
+          useful. Look for GNU make more directly.
+        Fix documentation for inc_dirs and lib_dirs.
 
 0.24    Fri Jan 14, 2011
         Remove DynaLoader check for Judy1Test. Needed? It was
