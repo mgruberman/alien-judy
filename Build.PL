@@ -119,32 +119,32 @@ It requires a C compiler and GNU make.
     if (    -e 'src/judy-1.0.4/Makefile'
          && -e 'src/judy-1.0.4/config.h'
     ) {
-	$run_configure = $builder->y_n("Re-run Judy's configure? ", 'n');
+        $run_configure = $builder->y_n("Re-run Judy's configure? ", 'n');
     }
     else {
-	$run_configure = $builder->y_n("Run Judy's configure now? ",'y');
+        $run_configure = $builder->y_n("Run Judy's configure now? ",'y');
     }
 
     if ( $run_configure ) {
-	my $configure_args = $builder->prompt(
+        my $configure_args = $builder->prompt(
             'Pass any arguments to configure: ',
             $builder->_default_config_args
         );
-	$builder->notes("configure_args", $configure_args);
+        $builder->notes("configure_args", $configure_args);
 
-	if( $builder->_run_judy_configure ) {
-	    print q{
+        if( $builder->_run_judy_configure ) {
+            print q{
 
 You should now run ./Build.
 };
-	}
-	else {
-	    print q{
+        }
+        else {
+            print q{
     Something went wrong with the Judy configuration.
     You should correct it and re-run Build.PL.
 };
             exit 1;
-	}
+        }
     }
 }
 
