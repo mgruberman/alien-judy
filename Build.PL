@@ -99,6 +99,10 @@ $builder->notes('build_judy',$build_judy);
 
 
 if ( $build_judy ) {
+
+    # Ensure this directory exists
+    system "mkdir -p src/judy-1.0.5/doc/man/man3";
+
     print q{
 
 ---------------------------------------------------------------------

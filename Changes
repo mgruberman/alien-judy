@@ -1,5 +1,9 @@
 Revision history for Alien-Judy
 
+...
+        Re-assert that Dist::Zilla will keep src/judy-1.0.5/doc/man/man3/.keep
+        Manually mkdir src/judy-1.0.5/doc/man/man3
+
 0.25    Tue Jan 18, 2011
         Ignore $Config{make} and $Config{gmake} because they're not actually
           useful. Look for GNU make more directly.
