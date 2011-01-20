@@ -150,6 +150,6 @@ sub dl_load_libjudy {
     return $ok;
 }
 
-$VERSION = '0.25';
+$VERSION = '0.26';
 
 1;
