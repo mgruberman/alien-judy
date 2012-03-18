@@ -3,6 +3,7 @@ use Test::More tests => 3;
 
 # Test that lib/Alien/Judy.pm can be loaded.
 BEGIN {
+    $Alien::Judy::DEBUG = 1;
 	use_ok( 'Alien::Judy' );
 }
 diag( "Testing Alien::Judy $Alien::Judy::VERSION, Perl $], $^X" );

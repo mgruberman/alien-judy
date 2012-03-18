@@ -1,5 +1,8 @@
 Revision history for Alien-Judy
 
+0.27    Sat Mar 17, 2012
+        Acquire useful diagnostics for cpan testers
+
 0.26    Wed Jan 19, 2011
         Re-assert that Dist::Zilla will keep src/judy-1.0.5/doc/man/man3/.keep
         Manually mkdir src/judy-1.0.5/doc/man/man3
